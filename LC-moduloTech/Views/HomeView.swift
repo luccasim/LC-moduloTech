@@ -11,15 +11,22 @@ struct HomeView: View {
     
     @State private var list = (0...10).map({$0})
     
+    @Environment(\.managedObjectContext) private var viewContext
+
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \Device.id_, ascending: true)],
+        animation: .default)
+    private var devices: FetchedResults<Device>
+    
     var body: some View {
     
         NavigationView {
             
             List {
                 
-                ForEach(self.list, id: \.self) { Model in
+                ForEach(self.devices, id: \.self) { Device in
                     NavigationLink(destination: DetailView()) {
-                        Text("Hello world \(Model)")
+                        Text("\(Device.name)")
                      }
                 }
                 .onDelete(perform: self.deleteItem(at:))
@@ -84,6 +91,7 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HomeView()
+                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }

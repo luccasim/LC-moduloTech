@@ -16,6 +16,8 @@
 		84C8D59725D3F16600A0DBD9 /* LC_moduloTechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8D59625D3F16600A0DBD9 /* LC_moduloTechTests.swift */; };
 		84C8D5A225D3F16600A0DBD9 /* LC_moduloTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8D5A125D3F16600A0DBD9 /* LC_moduloTechUITests.swift */; };
 		EC793DD825D83551005E589C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC793DD725D83551005E589C /* HomeView.swift */; };
+		EC942FD025D843E200AB9D18 /* storageReponse.json in Resources */ = {isa = PBXBuildFile; fileRef = EC942FCF25D843E200AB9D18 /* storageReponse.json */; };
+		EC942FD825D8496F00AB9D18 /* Device+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC942FD725D8496F00AB9D18 /* Device+extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		84C8D5A125D3F16600A0DBD9 /* LC_moduloTechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LC_moduloTechUITests.swift; sourceTree = "<group>"; };
 		84C8D5A325D3F16600A0DBD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC793DD725D83551005E589C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EC942FCF25D843E200AB9D18 /* storageReponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = storageReponse.json; sourceTree = "<group>"; };
+		EC942FD725D8496F00AB9D18 /* Device+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device+extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		84C8D57E25D3F16300A0DBD9 /* LC-moduloTech */ = {
 			isa = PBXGroup;
 			children = (
+				EC942FC625D8437E00AB9D18 /* Models */,
 				84A0679A25D80184004BF58A /* Views */,
 				EC793DD325D83530005E589C /* Supporting Files */,
 				84C8D58D25D3F16600A0DBD9 /* Info.plist */,
@@ -148,11 +153,20 @@
 			children = (
 				84C8D57F25D3F16300A0DBD9 /* LC_moduloTechApp.swift */,
 				84C8D58125D3F16300A0DBD9 /* ContentView.swift */,
+				EC942FCF25D843E200AB9D18 /* storageReponse.json */,
 				84C8D58325D3F16600A0DBD9 /* Assets.xcassets */,
 				84C8D58825D3F16600A0DBD9 /* Persistence.swift */,
 				84C8D58A25D3F16600A0DBD9 /* LC_moduloTech.xcdatamodeld */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC942FC625D8437E00AB9D18 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EC942FD725D8496F00AB9D18 /* Device+extension.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,7 @@
 			files = (
 				84C8D58725D3F16600A0DBD9 /* Preview Assets.xcassets in Resources */,
 				84C8D58425D3F16600A0DBD9 /* Assets.xcassets in Resources */,
+				EC942FD025D843E200AB9D18 /* storageReponse.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +304,7 @@
 				84C8D58225D3F16300A0DBD9 /* ContentView.swift in Sources */,
 				EC793DD825D83551005E589C /* HomeView.swift in Sources */,
 				84C8D58025D3F16300A0DBD9 /* LC_moduloTechApp.swift in Sources */,
+				EC942FD825D8496F00AB9D18 /* Device+extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
