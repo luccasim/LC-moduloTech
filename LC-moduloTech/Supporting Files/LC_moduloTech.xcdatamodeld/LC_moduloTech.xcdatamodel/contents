@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Device" representedClassName="Device" syncable="YES" codeGenerationType="class">
         <attribute name="id_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isSelected_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
         <attribute name="type_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
@@ -9,7 +10,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="Device" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Device" positionX="-63" positionY="-18" width="128" height="89"/>
         <element name="Item" positionX="-9" positionY="27" width="128" height="58"/>
     </elements>
 </model>

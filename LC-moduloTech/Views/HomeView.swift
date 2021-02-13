@@ -6,18 +6,27 @@
 //
 
 import SwiftUI
+import CoreData
+
+struct UserSearchPreference {
+    var showLight : Bool = false
+    var showRollerShutter : Bool = false
+    var showHeater : Bool = false
+}
 
 struct HomeView: View {
     
-    @State private var list = (0...10).map({$0})
-    
     @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Device.id_, ascending: true)],
-        animation: .default)
-    private var devices: FetchedResults<Device>
+    @FetchRequest private var devices: FetchedResults<Device>
     
+    @State var preferences : UserSearchPreference = UserSearchPreference()
+    
+    init() {
+        let request = Device.fetchRequest(.isSelected)
+        _devices = FetchRequest(fetchRequest: request)
+        print("View created with \(request)")
+    }
+        
     var body: some View {
     
         NavigationView {
@@ -35,8 +44,7 @@ struct HomeView: View {
             .toolbar {
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-
-                    NavigationLink(destination: FilterView()) {
+                    NavigationLink(destination: FilterView(Preference: self.$preferences).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Filter")
                      }
                 }
@@ -51,7 +59,7 @@ struct HomeView: View {
     }
     
     private func deleteItem(at offsets: IndexSet) {
-        self.list.remove(atOffsets: offsets)
+//        self.list.remove(atOffsets: offsets)
     }
     
 }
@@ -66,15 +74,6 @@ struct ProfilView: View {
     }
 }
 
-struct FilterView: View {
-    
-    var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.blue)
-        }
-    }
-}
 
 struct DetailView: View {
     
