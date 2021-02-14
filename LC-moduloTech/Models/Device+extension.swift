@@ -30,7 +30,7 @@ extension Device {
     }
     
     var name : String {
-        return "Device - \(self.id_) \(self.type.rawValue)"
+        return "\(self.name_ ?? "Device Type \(self.type.rawValue)")"
     }
     
     static func fetchRequest(_ predicate: NSPredicate) -> NSFetchRequest<Device> {
@@ -40,59 +40,58 @@ extension Device {
         return request
     }
     
-    static func updateSelectionForType(Light:Bool, RollerShutter:Bool, Heater:Bool, onContext:NSManagedObjectContext) {
+    static func createProductDevice(fromJSON json:StorageWS.Device, onContext:NSManagedObjectContext) {
+        switch json.productType.id {
         
-        do {
-            let devices = try onContext.fetch(Device.fetchRequest(.all))
-            devices.forEach({ device in
-                switch device.type {
-                case .Heater: device.isSelected_ = Heater
-                case .Light: device.isSelected_ = Light
-                case .RollerShutter: device.isSelected_ = RollerShutter
-                default: print("Unknow device detected!")
-                }
-            })
+        case 1:
+            //light
+            let light = Light(context:onContext)
+            light.id_ = Int16(json.id)
+            light.type_ = 1
+            light.isSelected_ = true
+            light.name_ = json.deviceName
+            light.intensity_ = Int16(json.intensity ?? 0)
+            light.mode_ = false
+            light.objectWillChange.send()
             
-            print(devices)
-        }
-        catch let error {
-            print("Fetching request failed \(error.localizedDescription)")
+        case 2:
+            //rollershutter
+            let rollerShutter = RollerShutter(context: onContext)
+            rollerShutter.id_ = Int16(json.id)
+            rollerShutter.type_ = 2
+            rollerShutter.isSelected_ = true
+            rollerShutter.name_ = json.deviceName
+            rollerShutter.position_ = Int16(json.position ?? 0)
+            rollerShutter.objectWillChange.send()
+            
+        case 3:
+            //heater
+            let heater = Heater(context: onContext)
+            heater.id_ = Int16(json.id)
+            heater.type_ = 3
+            heater.isSelected_ = true
+            heater.name_ = json.deviceName
+            heater.temperature_ = Double(json.temperature ?? 0)
+            heater.mode_ = false
+            heater.objectWillChange.send()
+            
+        default: break
         }
     }
     
-    static func fetchDeviceList(Context:NSManagedObjectContext) {
-        let webService = StorageWS.shared
+    static func deleteAllDevices(onContext:NSManagedObjectContext) {
         
-        webService.fetchDeviceList { (result) in
+        do {
             
-            switch result {
-            case .success(let reponse):
-                
-                let devices = reponse.devices.map({ deviceJSON -> Device in
-                    let device = Device(context: Context)
-                    device.id_ = Int16(deviceJSON.id)
-                    device.name_ = deviceJSON.deviceName
-                    device.type_ = deviceJSON.productType.id
-                    device.isSelected_ = true
-                    device.objectWillChange.send()
-                    return device
-                })
-                
-                print("Fetching item : \(devices)")
-                
-                do {
-                    try Context.save()
-                } catch {
-                    // Replace this implementation with code to handle the error appropriately.
-                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
-                
-            case .failure(let error):
-                print("Error when fetching \(error.localizedDescription)")
-            }
+            let allDevices = try onContext.fetch(Device.fetchRequest(.all))
+            allDevices.forEach({onContext.delete($0)})
+            try onContext.save()
+            print("Delete all devices successfully!")
+            
+        } catch let error {
+            print("Error on Context \(error.localizedDescription)")
         }
+        
     }
 }
 
@@ -112,3 +111,4 @@ extension StorageWS.Device.ProductType {
         }
     }
 }
+

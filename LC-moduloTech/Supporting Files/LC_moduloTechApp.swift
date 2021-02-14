@@ -9,13 +9,14 @@ import SwiftUI
 
 @main
 struct LC_moduloTechApp: App {
-    let persistenceController = PersistenceController.shared
+    
+    var persistenceController = PersistenceController.shared
 
     var body: some Scene {
         WindowGroup {
-            HomeView()
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            HomeView(MainUser: persistenceController.mainUser)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
         }
     }

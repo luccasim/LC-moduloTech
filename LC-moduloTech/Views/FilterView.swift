@@ -7,15 +7,25 @@
 
 import SwiftUI
 
+struct UserSelectionPreference {
+    var showLight, showRollerShutter, showHeater : Bool
+}
+
 struct FilterView: View {
     
     @FetchRequest(fetchRequest: Device.fetchRequest(.all)) var alldevices: FetchedResults<Device>
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var preferences : UserSearchPreference
+    @State var preferences : UserSelectionPreference
     
-    init(Preference:Binding<UserSearchPreference>) {
-        _preferences = State(wrappedValue: Preference.wrappedValue)
+    private var user : User
+        
+    init(MainUser:User) {
+        _preferences = State(initialValue: UserSelectionPreference(
+                                showLight: MainUser.ligthSelection_,
+                                showRollerShutter: MainUser.rollerShutterSelection_,
+                                showHeater: MainUser.heaterSelection_))
+        self.user = MainUser
     }
     
     var body: some View {
@@ -33,20 +43,13 @@ struct FilterView: View {
             })
             
         }
+        .navigationTitle("User Preferences")
+        .onAppear(perform: {PersistenceController.shared.save()})
         .onDisappear(perform: {updateSelectedDevicesTypes()})
     }
     
+    /// Should update when the user leave this view
     func updateSelectedDevicesTypes() {
-        Device.updateSelectionForType(
-            Light: self.preferences.showLight,
-            RollerShutter: self.preferences.showRollerShutter,
-            Heater: self.preferences.showHeater,
-            onContext: self.viewContext)
-    }
-}
-
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterView(Preference: .constant(UserSearchPreference()))
+        self.user.update(Light: self.preferences.showLight, RollerShutter: self.preferences.showRollerShutter, Heater: self.preferences.showHeater)
     }
 }

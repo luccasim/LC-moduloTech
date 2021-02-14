@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Device" representedClassName="Device" syncable="YES" codeGenerationType="class">
         <attribute name="id_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isSelected_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
         <attribute name="type_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="Heater" representedClassName="Heater" parentEntity="Device" syncable="YES" codeGenerationType="class">
+        <attribute name="mode_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="temperature_" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Light" representedClassName="Light" parentEntity="Device" syncable="YES" codeGenerationType="class">
+        <attribute name="intensity_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="mode_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="RollerShutter" representedClassName="RollerShutter" parentEntity="Device" syncable="YES" codeGenerationType="class">
+        <attribute name="position_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="birthDate_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="city_" optional="YES" attributeType="String"/>
+        <attribute name="country_" optional="YES" attributeType="String"/>
+        <attribute name="firstName_" optional="YES" attributeType="String"/>
+        <attribute name="heaterSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastName_" optional="YES" attributeType="String"/>
+        <attribute name="ligthSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="postalCode_" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rollerShutterSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="street_" optional="YES" attributeType="String"/>
+        <attribute name="streetCode_" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Device" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="Item" positionX="-9" positionY="27" width="128" height="58"/>
+        <element name="Device" positionX="-74.39453125" positionY="-17.6439208984375" width="128" height="89"/>
+        <element name="User" positionX="-258.724853515625" positionY="-179.6052856445312" width="128" height="208"/>
+        <element name="Heater" positionX="101.408935546875" positionY="121.3122863769531" width="128" height="73"/>
+        <element name="Light" positionX="-248.197021484375" positionY="114.0540161132812" width="128" height="73"/>
+        <element name="RollerShutter" positionX="-73.7056884765625" positionY="153.6430053710938" width="128" height="58"/>
     </elements>
 </model>

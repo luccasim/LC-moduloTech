@@ -7,23 +7,16 @@
 
 import SwiftUI
 
-struct UserSearchPreference {
-    var showLight : Bool = true
-    var showRollerShutter : Bool = true
-    var showHeater : Bool = true
-}
-
 struct HomeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest private var devices: FetchedResults<Device>
     
-    @State var preferences : UserSearchPreference = UserSearchPreference()
+    @ObservedObject var user : User
     
-    init() {
-        let request = Device.fetchRequest(.isSelected)
-        _devices = FetchRequest(fetchRequest: request)
-        print("View created with \(request)")
+    init(MainUser:User) {
+        _devices = FetchRequest(fetchRequest: Device.fetchRequest(.isSelected))
+        self.user = MainUser
     }
         
     var body: some View {
@@ -39,48 +32,27 @@ struct HomeView: View {
                 }
                 .onDelete(perform: self.deleteItem(at:))
             }
-            .navigationTitle("Devices")
+            .navigationTitle("Devices List")
             .toolbar {
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: FilterView(Preference: self.$preferences).environment(\.managedObjectContext, self.viewContext)) {
+                    NavigationLink(destination: FilterView(MainUser: self.user).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Filter")
                      }
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: ProfilView()) {
+                    NavigationLink(destination: UserView(MainUser: self.user).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Profil")
                      }
                 }
             }
-            .onAppear(perform: {
-                Device.fetchDeviceList(Context: self.viewContext)
-            })
         }
     }
     
     private func deleteItem(at offsets: IndexSet) {
         offsets.map { devices[$0] }.forEach(viewContext.delete)
+        PersistenceController.shared.save()
     }
     
-}
-
-struct ProfilView: View {
-    
-    var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.green)
-        }
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            HomeView()
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-    }
 }
