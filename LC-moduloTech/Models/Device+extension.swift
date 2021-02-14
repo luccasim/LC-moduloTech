@@ -40,31 +40,6 @@ extension Device {
         return request
     }
     
-    static func updateSelectionForType(ForUser:User, Light:Bool, RollerShutter:Bool, Heater:Bool, onContext:NSManagedObjectContext) {
-        
-        do {
-            
-            let devices = try onContext.fetch(Device.fetchRequest(.all))
-            
-            devices.forEach({ device in
-                switch device.type {
-                case .Heater: device.isSelected_ = Heater
-                case .Light: device.isSelected_ = Light
-                case .RollerShutter: device.isSelected_ = RollerShutter
-                default: print("Unknow device detected!")
-                }
-            })
-            
-            ForUser.heaterSelection_ = Heater
-            ForUser.ligthSelection_ = Light
-            ForUser.rollerShutterSelection_ = RollerShutter
-            
-        }
-        catch let error {
-            print("Fetching request failed \(error.localizedDescription)")
-        }
-    }
-    
 }
 
 extension NSPredicate {
@@ -73,13 +48,4 @@ extension NSPredicate {
     static var isSelected = NSPredicate(format:"isSelected_ == TRUE")
 }
 
-extension StorageWS.Device.ProductType {
-    
-    var id : Int16 {
-        switch self {
-        case .light: return 1
-        case .rollerShutter: return 2
-        case .heater: return 3
-        }
-    }
-}
+

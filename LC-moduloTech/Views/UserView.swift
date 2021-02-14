@@ -15,6 +15,7 @@ struct UserView: View {
     
     private var user : User
     
+    @Environment(\.managedObjectContext) private var viewContext
     @State var informations : UserUpdateInformations
     
     init(MainUser:User) {
@@ -38,6 +39,9 @@ struct UserView: View {
             TextField("City", text: $informations.city)
             TextField("Street", text: $informations.street)
             TextField("Street Code", text: $informations.streetCode)
+            Button("Fetch User Info") {
+                self.fetchUserInfo()
+            }
         }
         .onDisappear(perform: {
             self.updateValue()
@@ -47,10 +51,8 @@ struct UserView: View {
     func updateValue() {
         self.user.update(WithUserInformation: self.informations)
     }
+    
+    func fetchUserInfo() {
+        self.user.fetchDeviceList(Context: self.viewContext)
+    }
 }
-
-//struct UserView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UserView()
-//    }
-//}

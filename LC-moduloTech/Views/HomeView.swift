@@ -12,14 +12,10 @@ struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest private var devices: FetchedResults<Device>
     
-    @State var preferences : User.UserSelectionPreference
-    
     @ObservedObject var user : User
     
     init(MainUser:User) {
-        let request = Device.fetchRequest(.isSelected)
-        _devices = FetchRequest(fetchRequest: request)
-        _preferences = State(initialValue: MainUser.preferences)
+        _devices = FetchRequest(fetchRequest: Device.fetchRequest(.isSelected))
         self.user = MainUser
     }
         
@@ -40,13 +36,13 @@ struct HomeView: View {
             .toolbar {
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: FilterView(MainUser: self.user, Preference: self.$preferences).environment(\.managedObjectContext, self.viewContext)) {
+                    NavigationLink(destination: FilterView(MainUser: self.user).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Filter")
                      }
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: UserView(MainUser: self.user)) {
+                    NavigationLink(destination: UserView(MainUser: self.user).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Profil")
                      }
                 }
@@ -59,22 +55,3 @@ struct HomeView: View {
     }
     
 }
-
-struct ProfilView: View {
-    
-    var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.green)
-        }
-    }
-}
-
-//struct HomeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NavigationView {
-//            HomeView()
-//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//        }
-//    }
-//}

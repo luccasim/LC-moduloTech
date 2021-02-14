@@ -30,7 +30,9 @@ struct DetailView: View {
     
 }
 
-struct HeaterView: View {
+/// We didnt need split theses view on others files, they're pretty straighforward.
+
+private struct HeaterView: View {
     
     @State var mode : Bool = false
     @State var temperature : Double = 0
@@ -54,7 +56,7 @@ struct HeaterView: View {
     }
 }
 
-struct LightView: View {
+private struct LightView: View {
     
     @State var mode : Bool = false
     @State var intensity : Double = 0
@@ -72,7 +74,7 @@ struct LightView: View {
     }
 }
 
-struct RollerShutterView: View {
+private struct RollerShutterView: View {
     
     @State private var position = 0.0
 

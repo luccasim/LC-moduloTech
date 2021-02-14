@@ -10,12 +10,6 @@ import CoreData
 
 extension User {
     
-    struct UserSelectionPreference {
-        var showLight : Bool = true
-        var showRollerShutter : Bool = true
-        var showHeater : Bool = true
-    }
-    
     var fullName : String {
         return "\(self.firstName_ ?? "") \(self.lastName_ ?? "")"
     }
@@ -26,37 +20,18 @@ extension User {
         request.predicate = predicate
         return request
     }
-    
-    func update() {
         
-    }
-    
-    var preferences : UserSelectionPreference {
-        return UserSelectionPreference(showLight: self.ligthSelection_, showRollerShutter: self.rollerShutterSelection_, showHeater: self.heaterSelection_)
-    }
-    
-    private func fetchDeviceList(Context:NSManagedObjectContext) {
+    func fetchDeviceList(Context:NSManagedObjectContext) {
         
         let webService = StorageWS.shared
-        
-        print("Fetching Devices List")
-        
+                
         webService.fetchDeviceList { (result) in
             
             DispatchQueue.main.async {
                 
                 switch result {
+                
                 case .success(let reponse):
-                    
-                    let devices = reponse.devices.map({ deviceJSON -> Device in
-                        let device = Device(context: Context)
-                        device.id_ = Int16(deviceJSON.id)
-                        device.name_ = deviceJSON.deviceName
-                        device.type_ = deviceJSON.productType.id
-                        device.isSelected_ = true
-                        device.objectWillChange.send()
-                        return device
-                    })
                     
                     let user = self
                     user.lastName_ = reponse.user.lastName
@@ -71,6 +46,15 @@ extension User {
                     user.heaterSelection_ = true
                     user.rollerShutterSelection_ = true
                     user.objectWillChange.send()
+                    
+                    reponse.devices.forEach({ deviceJSON in
+                        let device = Device(context: Context)
+                        device.id_ = Int16(deviceJSON.id)
+                        device.name_ = deviceJSON.deviceName
+                        device.type_ = deviceJSON.productType.id
+                        device.isSelected_ = true
+                        device.objectWillChange.send()
+                    })
                     
                     do {
                         try Context.save()
@@ -99,6 +83,8 @@ extension User {
         return first
     }
     
+    //MARK: - Update
+    
     func update(WithUserInformation userInfos:UserUpdateInformations) {
         self.firstName_ = userInfos.firstName
         self.lastName_ = userInfos.lastName
@@ -109,4 +95,40 @@ extension User {
         self.objectWillChange.send()
     }
     
+    func update(Light:Bool, RollerShutter:Bool, Heater:Bool) {
+        
+        do {
+            
+            let devices = try self.managedObjectContext?.fetch(Device.fetchRequest(.all))
+            
+            devices?.forEach({ device in
+                switch device.type {
+                case .Heater: device.isSelected_ = Heater
+                case .Light: device.isSelected_ = Light
+                case .RollerShutter: device.isSelected_ = RollerShutter
+                default: print("Unknow device detected!")
+                }
+            })
+            
+            self.heaterSelection_ = Heater
+            self.ligthSelection_ = Light
+            self.rollerShutterSelection_ = RollerShutter
+            
+        }
+        catch let error {
+            print("Fetching request failed \(error.localizedDescription)")
+        }
+    }
+    
+}
+
+extension StorageWS.Device.ProductType {
+    
+    var id : Int16 {
+        switch self {
+        case .light: return 1
+        case .rollerShutter: return 2
+        case .heater: return 3
+        }
+    }
 }
