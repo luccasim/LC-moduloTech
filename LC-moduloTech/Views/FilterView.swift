@@ -13,9 +13,13 @@ struct FilterView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @State var preferences : User.UserSelectionPreference
+    @ObservedObject var user : User
     
-    init(Preference:Binding<User.UserSelectionPreference>) {
+    @State var showLight = false
+    
+    init(MainUser:User, Preference:Binding<User.UserSelectionPreference>) {
         _preferences = State(wrappedValue: Preference.wrappedValue)
+        self.user = MainUser
     }
     
     var body: some View {
@@ -38,7 +42,7 @@ struct FilterView: View {
     
     func updateSelectedDevicesTypes() {
         Device.updateSelectionForType(
-            Light: self.preferences.showLight,
+            ForUser: self.user, Light: self.showLight,
             RollerShutter: self.preferences.showRollerShutter,
             Heater: self.preferences.showHeater,
             onContext: self.viewContext)

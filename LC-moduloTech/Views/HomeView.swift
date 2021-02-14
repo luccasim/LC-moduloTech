@@ -36,11 +36,11 @@ struct HomeView: View {
                 }
                 .onDelete(perform: self.deleteItem(at:))
             }
-            .navigationTitle("Devices")
+            .navigationTitle("Devices List")
             .toolbar {
                 
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: FilterView(Preference: self.$preferences).environment(\.managedObjectContext, self.viewContext)) {
+                    NavigationLink(destination: FilterView(MainUser: self.user, Preference: self.$preferences).environment(\.managedObjectContext, self.viewContext)) {
                          Text("Filter")
                      }
                 }

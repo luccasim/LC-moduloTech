@@ -27,40 +27,63 @@ struct DetailView: View {
         default: LightView()
         }
     }
+    
 }
 
 struct HeaterView: View {
     
+    @State var mode : Bool = false
+    @State var temperature : Double = 0
+    
+    var calculedTemp : Double {
+        let temp = Int(temperature / 2)
+        let mod = Int(temperature) % 2
+        return 7.0 + Double(temp) + Double(mod) * 0.5
+    }
+    
     var body: some View {
         VStack {
-            Rectangle()
-                .foregroundColor(.red)
+            Form {
+                Toggle("Mode \(self.mode ? "ON" : "OFF")", isOn: self.$mode)
+                VStack {
+                    Text("temperature \(String(format: "%.1f", self.calculedTemp))")
+                    Slider(value: self.$temperature, in: 0...42)
+                }
+            }
         }
     }
 }
 
 struct LightView: View {
     
+    @State var mode : Bool = false
+    @State var intensity : Double = 0
+    
     var body: some View {
         VStack {
-            Rectangle()
-                .foregroundColor(.blue)
+            Form {
+                Toggle("Mode \(self.mode ? "ON" : "OFF")", isOn: self.$mode)
+                VStack {
+                    Text("Intensity \(String(format: "%.0f", self.intensity))")
+                    Slider(value: self.$intensity, in: 0...100)
+                }
+            }
         }
     }
 }
 
 struct RollerShutterView: View {
     
+    @State private var position = 0.0
+
     var body: some View {
         VStack {
-            Rectangle()
-                .foregroundColor(.green)
+            Form {
+                Text("Position \(self.position)")
+                Slider(value: self.$position, in: 0...100)
+                    .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .rotationEffect(.init(degrees: 90))
+            }
         }
     }
 }
-
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView(Device: <#Device#>)
-//    }
-//}
