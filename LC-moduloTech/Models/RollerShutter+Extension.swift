@@ -10,4 +10,12 @@ import CoreData
 
 extension RollerShutter {
     
+    var position : Double {
+        return Double(self.position_)
+    }
+    
+    func update(newPosition:Double) {
+        self.position_ = Int16(newPosition)
+    }
+    
 }

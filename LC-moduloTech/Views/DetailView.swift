@@ -24,7 +24,7 @@ struct DetailView: View {
         
         case .RollerShutter:
             if let roller = device as? RollerShutter {
-                RollerShutterView(roller:roller)
+                RollerShutterView(Roller:roller)
             }
             
         case .Heater:
@@ -71,7 +71,9 @@ private struct HeaterView: View {
                     Slider(value: self.$temperature, in: 0...42)
                 }
             }
-        }.onDisappear(perform: {
+        }
+        .navigationTitle(self.heater.name)
+        .onDisappear(perform: {
             self.updateDevice()
         })
     }
@@ -104,6 +106,7 @@ private struct LightView: View {
                 }
             }
         }
+        .navigationTitle(self.light.name)
         .onDisappear(perform: {
             self.light.udpate(NewIntensity: self.intensity, NewMode: self.mode)
         })
@@ -112,18 +115,27 @@ private struct LightView: View {
 
 private struct RollerShutterView: View {
     
-    var roller : RollerShutter
+    private var roller : RollerShutter
     
     @State private var position = 0.0
+    
+    init(Roller:RollerShutter) {
+        _position = State(initialValue: Roller.position)
+        self.roller = Roller
+    }
 
     var body: some View {
         VStack {
             Form {
-                Text("Position \(self.position)")
+                Text("Position \(String(format: "%.0f", self.position))")
                 Slider(value: self.$position, in: 0...100)
                     .frame(width: 200, height: 200, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .rotationEffect(.init(degrees: 90))
+                    .rotationEffect(.init(degrees: 270))
             }
         }
+        .navigationTitle(self.roller.name)
+        .onDisappear(perform: {
+            self.roller.update(newPosition: self.position)
+        })
     }
 }
