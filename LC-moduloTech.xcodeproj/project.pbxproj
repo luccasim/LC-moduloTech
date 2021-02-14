@@ -21,6 +21,7 @@
 		EC497AA625D9BCAB00794FA6 /* Light+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AA525D9BCAB00794FA6 /* Light+Extension.swift */; };
 		EC497AAB25D9BCEB00794FA6 /* RollerShutter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AAA25D9BCEB00794FA6 /* RollerShutter+Extension.swift */; };
 		EC497AB025D9BD0C00794FA6 /* Heater+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AAF25D9BD0C00794FA6 /* Heater+Extension.swift */; };
+		EC497AB925D9D4DA00794FA6 /* iOS technical test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EC497AB825D9D4DA00794FA6 /* iOS technical test.pdf */; };
 		EC793DD825D83551005E589C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC793DD725D83551005E589C /* HomeView.swift */; };
 		EC79BB1D25D8C63700E5E471 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC79BB1C25D8C63700E5E471 /* DetailView.swift */; };
 		EC942FD025D843E200AB9D18 /* storageReponse.json in Resources */ = {isa = PBXBuildFile; fileRef = EC942FCF25D843E200AB9D18 /* storageReponse.json */; };
@@ -66,6 +67,8 @@
 		EC497AA525D9BCAB00794FA6 /* Light+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Light+Extension.swift"; sourceTree = "<group>"; };
 		EC497AAA25D9BCEB00794FA6 /* RollerShutter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RollerShutter+Extension.swift"; sourceTree = "<group>"; };
 		EC497AAF25D9BD0C00794FA6 /* Heater+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heater+Extension.swift"; sourceTree = "<group>"; };
+		EC497AB725D9D48900794FA6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EC497AB825D9D4DA00794FA6 /* iOS technical test.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "iOS technical test.pdf"; sourceTree = "<group>"; };
 		EC793DD725D83551005E589C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EC79BB1C25D8C63700E5E471 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		EC942FCF25D843E200AB9D18 /* storageReponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = storageReponse.json; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 		84C8D57325D3F16300A0DBD9 = {
 			isa = PBXGroup;
 			children = (
+				EC497AB725D9D48900794FA6 /* README.md */,
+				EC497AB825D9D4DA00794FA6 /* iOS technical test.pdf */,
 				84C8D57E25D3F16300A0DBD9 /* LC-moduloTech */,
 				84C8D59525D3F16600A0DBD9 /* LC-moduloTechTests */,
 				84C8D5A025D3F16600A0DBD9 /* LC-moduloTechUITests */,
@@ -296,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC497AB925D9D4DA00794FA6 /* iOS technical test.pdf in Resources */,
 				84C8D58725D3F16600A0DBD9 /* Preview Assets.xcassets in Resources */,
 				84C8D58425D3F16600A0DBD9 /* Assets.xcassets in Resources */,
 				EC942FD025D843E200AB9D18 /* storageReponse.json in Resources */,

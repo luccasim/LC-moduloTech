@@ -47,8 +47,8 @@ private struct HeaterView: View {
     
     private var heater : Heater
 
-    @State var mode : Bool = false
-    @State var temperature : Double = 0
+    @State var mode : Bool
+    @State var temperature : Double
     
     init(heater:Heater) {
         _mode = State(initialValue: heater.mode)
@@ -56,19 +56,13 @@ private struct HeaterView: View {
         self.heater = heater
     }
     
-    var calculedTemp : Double {
-        let temp = Int(temperature / 2)
-        let mod = Int(temperature) % 2
-        return 7.0 + Double(temp) + Double(mod) * 0.5
-    }
-    
     var body: some View {
         VStack {
             Form {
                 Toggle("Mode \(self.mode ? "ON" : "OFF")", isOn: self.$mode)
                 VStack {
-                    Text("temperature \(String(format: "%.1f", self.calculedTemp))")
-                    Slider(value: self.$temperature, in: 0...42)
+                    Text("temperature \(String(format: "%.1f", self.temperature))")
+                    Slider(value: self.$temperature, in: 7...28, step: 0.5, onEditingChanged: {_ in })
                 }
             }
         }
@@ -79,7 +73,7 @@ private struct HeaterView: View {
     }
     
     func updateDevice() {
-        self.heater.update(NewTemperature: self.calculedTemp, NewMode: self.mode)
+        self.heater.update(NewTemperature: self.temperature, NewMode: self.mode)
     }
 }
 
@@ -87,8 +81,8 @@ private struct LightView: View {
     
     private  var light : Light
     
-    @State var mode : Bool = false
-    @State var intensity : Double = 0
+    @State var mode : Bool
+    @State var intensity : Double
     
     init(Light:Light) {
         _mode = State(initialValue: Light.mode_)
@@ -117,7 +111,7 @@ private struct RollerShutterView: View {
     
     private var roller : RollerShutter
     
-    @State private var position = 0.0
+    @State private var position : Double
     
     init(Roller:RollerShutter) {
         _position = State(initialValue: Roller.position)
