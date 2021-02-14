@@ -21,20 +21,40 @@ struct DetailView: View {
     
     @ViewBuilder func deviceTypeView() -> some View {
         switch self.device.type {
-        case .RollerShutter: RollerShutterView()
-        case .Heater: HeaterView()
-        case .Light: LightView()
-        default: LightView()
+        
+        case .RollerShutter:
+            if let roller = device as? RollerShutter {
+                RollerShutterView(roller:roller)
+            }
+            
+        case .Heater:
+            if let heater = device as? Heater {
+                HeaterView(heater: heater)
+            }
+            
+        case .Light:
+            if let light = device as? Light {
+                LightView(light: light)
+            }
+            
+        default: Text("C'est pas normal cette vue, Tu doutes!")
         }
     }
 }
 
 /// We didnt need split theses view on others files, they're pretty straighforward.
-
 private struct HeaterView: View {
+    
+    private var heater : Heater
 
     @State var mode : Bool = false
     @State var temperature : Double = 0
+    
+    init(heater:Heater) {
+        _mode = State(initialValue: heater.mode)
+        _temperature = State(initialValue: heater.temperature)
+        self.heater = heater
+    }
     
     var calculedTemp : Double {
         let temp = Int(temperature / 2)
@@ -51,11 +71,19 @@ private struct HeaterView: View {
                     Slider(value: self.$temperature, in: 0...42)
                 }
             }
-        }
+        }.onDisappear(perform: {
+            self.updateDevice()
+        })
+    }
+    
+    func updateDevice() {
+        self.heater.update(NewTemperature: self.calculedTemp, NewMode: self.mode)
     }
 }
 
 private struct LightView: View {
+    
+    var light : Light
     
     @State var mode : Bool = false
     @State var intensity : Double = 0
@@ -74,6 +102,8 @@ private struct LightView: View {
 }
 
 private struct RollerShutterView: View {
+    
+    var roller : RollerShutter
     
     @State private var position = 0.0
 

@@ -71,7 +71,7 @@ extension Device {
             heater.type_ = 3
             heater.isSelected_ = true
             heater.name_ = json.deviceName
-            heater.temperature_ = Int16(json.temperature ?? 0)
+            heater.temperature_ = Double(json.temperature ?? 0)
             heater.mode_ = false
             heater.objectWillChange.send()
             

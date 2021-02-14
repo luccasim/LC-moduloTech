@@ -8,7 +8,7 @@
     </entity>
     <entity name="Heater" representedClassName="Heater" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="mode_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="temperature_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature_" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Light" representedClassName="Light" parentEntity="Device" syncable="YES" codeGenerationType="class">
         <attribute name="intensity_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>

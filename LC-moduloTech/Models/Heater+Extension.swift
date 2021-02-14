@@ -10,4 +10,17 @@ import CoreData
 
 extension Heater {
     
+    var temperature : Double {
+        return self.temperature_
+    }
+    
+    var mode : Bool {
+        return self.mode_
+    }
+    
+    func update(NewTemperature:Double,NewMode:Bool) {
+        self.temperature_ = NewTemperature
+        self.mode_ = NewMode
+        print("Heater updated :\(self)")
+    }
 }
