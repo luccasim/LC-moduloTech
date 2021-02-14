@@ -30,7 +30,7 @@ extension Device {
     }
     
     var name : String {
-        return "Device - \(self.id_) \(self.type.rawValue)"
+        return "\(self.name_ ?? "Device Type \(self.type.rawValue)")"
     }
     
     static func fetchRequest(_ predicate: NSPredicate) -> NSFetchRequest<Device> {
@@ -77,6 +77,20 @@ extension Device {
                     device.objectWillChange.send()
                     return device
                 })
+                
+                let user = User(context: Context)
+                user.lastName_ = reponse.user.lastName
+                user.firstName_ = reponse.user.firstName
+                user.birthDate_ = Date(timeIntervalSinceNow: TimeInterval(reponse.user.birthDate))
+                user.city_ = reponse.user.address.city
+                user.country_ = reponse.user.address.country
+                user.postalCode_ = Int32(reponse.user.address.postalCode)
+                user.street_ = reponse.user.address.street
+                user.streetCode_ = reponse.user.address.streetCode
+                user.ligthSelection_ = true
+                user.heaterSelection_ = true
+                user.rollerShutterSelection_ = true
+                user.objectWillChange.send()
                 
                 print("Fetching item : \(devices)")
                 

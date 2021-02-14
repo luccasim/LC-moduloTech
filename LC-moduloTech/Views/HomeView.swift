@@ -7,23 +7,20 @@
 
 import SwiftUI
 
-struct UserSearchPreference {
-    var showLight : Bool = true
-    var showRollerShutter : Bool = true
-    var showHeater : Bool = true
-}
-
 struct HomeView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest private var devices: FetchedResults<Device>
     
-    @State var preferences : UserSearchPreference = UserSearchPreference()
+    @State var preferences : User.UserSelectionPreference
     
-    init() {
+    @ObservedObject var user : User
+    
+    init(MainUser:User) {
         let request = Device.fetchRequest(.isSelected)
         _devices = FetchRequest(fetchRequest: request)
-        print("View created with \(request)")
+        _preferences = State(initialValue: MainUser.preferences)
+        self.user = MainUser
     }
         
     var body: some View {
@@ -54,9 +51,6 @@ struct HomeView: View {
                      }
                 }
             }
-            .onAppear(perform: {
-                Device.fetchDeviceList(Context: self.viewContext)
-            })
         }
     }
     
@@ -76,11 +70,11 @@ struct ProfilView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            HomeView()
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        }
-    }
-}
+//struct HomeView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView {
+//            HomeView()
+//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+//        }
+//    }
+//}

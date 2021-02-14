@@ -24,7 +24,7 @@ struct DetailView: View {
         case .RollerShutter: RollerShutterView()
         case .Heater: HeaterView()
         case .Light: LightView()
-        default: HomeView()
+        default: LightView()
         }
     }
 }

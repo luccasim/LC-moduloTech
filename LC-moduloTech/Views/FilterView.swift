@@ -12,9 +12,9 @@ struct FilterView: View {
     @FetchRequest(fetchRequest: Device.fetchRequest(.all)) var alldevices: FetchedResults<Device>
     @Environment(\.managedObjectContext) private var viewContext
     
-    @State var preferences : UserSearchPreference
+    @State var preferences : User.UserSelectionPreference
     
-    init(Preference:Binding<UserSearchPreference>) {
+    init(Preference:Binding<User.UserSelectionPreference>) {
         _preferences = State(wrappedValue: Preference.wrappedValue)
     }
     
@@ -42,11 +42,5 @@ struct FilterView: View {
             RollerShutter: self.preferences.showRollerShutter,
             Heater: self.preferences.showHeater,
             onContext: self.viewContext)
-    }
-}
-
-struct FilterView_Previews: PreviewProvider {
-    static var previews: some View {
-        FilterView(Preference: .constant(UserSearchPreference()))
     }
 }

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Device" representedClassName="Device" syncable="YES" codeGenerationType="class">
         <attribute name="id_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isSelected_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name_" optional="YES" attributeType="String"/>
         <attribute name="type_" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
+        <attribute name="birthDate_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="city_" optional="YES" attributeType="String"/>
+        <attribute name="country_" optional="YES" attributeType="String"/>
+        <attribute name="firstName_" optional="YES" attributeType="String"/>
+        <attribute name="heaterSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastName_" optional="YES" attributeType="String"/>
+        <attribute name="ligthSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="postalCode_" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="rollerShutterSelection_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="street_" optional="YES" attributeType="String"/>
+        <attribute name="streetCode_" optional="YES" attributeType="String"/>
     </entity>
     <elements>
         <element name="Device" positionX="-63" positionY="-18" width="128" height="89"/>
-        <element name="Item" positionX="-9" positionY="27" width="128" height="58"/>
+        <element name="User" positionX="-272.7333984375" positionY="-15.09039306640625" width="128" height="208"/>
     </elements>
 </model>
