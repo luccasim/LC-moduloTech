@@ -17,6 +17,7 @@ struct UserView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
     @State var informations : UserUpdateInformations
+    @State var edit = false
     
     init(MainUser:User) {
         self.user = MainUser
@@ -33,12 +34,14 @@ struct UserView: View {
     var body: some View {
         
         Form {
-            TextField("FirstName", text: $informations.firstName)
-            TextField("LastName", text: $informations.lastName)
-            TextField("Country", text: $informations.country)
-            TextField("City", text: $informations.city)
-            TextField("Street", text: $informations.street)
-            TextField("Street Code", text: $informations.streetCode)
+            
+            dansLeBoule(label: "FirstName", Value:user.firstName_, Binding: $informations.firstName)
+            dansLeBoule(label: "LastName", Value:user.lastName_, Binding:$informations.lastName)
+            dansLeBoule(label: "Country", Value:user.country_, Binding: $informations.country)
+            dansLeBoule(label: "City", Value:user.city_, Binding: $informations.city)
+            dansLeBoule(label: "Street", Value:user.street_, Binding: $informations.street)
+            dansLeBoule(label: "Street Code", Value:user.streetCode_, Binding:$informations.streetCode)
+
             Button("Fetch User Info") {
                 self.fetchUserInfo()
             }
@@ -46,6 +49,23 @@ struct UserView: View {
         .onDisappear(perform: {
             self.updateValue()
         })
+        .navigationTitle("User informations")
+    }
+    
+    @ViewBuilder
+    func dansLeBoule(label:String, Value:String?, Binding:Binding<String>) -> some View {
+        if self.edit {
+            HStack {
+                Text(label)
+                TextField("", text: Binding)
+            }
+        } else {
+            HStack {
+                Text(label)
+                Spacer()
+                Text(Value ?? "")
+            }
+        }
     }
     
     func updateValue() {

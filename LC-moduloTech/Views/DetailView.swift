@@ -27,7 +27,6 @@ struct DetailView: View {
         default: LightView()
         }
     }
-    
 }
 
 /// We didnt need split theses view on others files, they're pretty straighforward.

@@ -43,6 +43,7 @@ struct FilterView: View {
             })
             
         }
+        .navigationTitle("User Preferences")
         .onDisappear(perform: {updateSelectedDevicesTypes()})
     }
     
