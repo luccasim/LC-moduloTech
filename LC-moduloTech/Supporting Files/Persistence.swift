@@ -15,13 +15,6 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for i in 0..<10 {
-//            let newItem = Item(context: viewContext)
-//            newItem.timestamp = Date()
-//            let newDevice = Device(context: viewContext)
-//            newDevice.id_ = Int16(i)
-//            newDevice.type_ = Int16(Int.random(in: 1...3))
-//            newDevice.name_ = "Device number \(i) with type \(newDevice.type_)"
-
         }
         do {
             try viewContext.save()
@@ -77,5 +70,15 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+    }
+    
+    func save() {
+        
+        do {
+            try self.container.viewContext.save()
+            print("Context is saved")
+        } catch let error {
+            print("Error for saving context \(error.localizedDescription)")
+        }
     }
 }

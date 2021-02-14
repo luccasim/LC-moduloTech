@@ -78,6 +78,21 @@ extension Device {
         default: break
         }
     }
+    
+    static func deleteAllDevices(onContext:NSManagedObjectContext) {
+        
+        do {
+            
+            let allDevices = try onContext.fetch(Device.fetchRequest(.all))
+            allDevices.forEach({onContext.delete($0)})
+            try onContext.save()
+            print("Delete all devices successfully!")
+            
+        } catch let error {
+            print("Error on Context \(error.localizedDescription)")
+        }
+        
+    }
 }
 
 extension NSPredicate {

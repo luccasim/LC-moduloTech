@@ -44,6 +44,7 @@ struct FilterView: View {
             
         }
         .navigationTitle("User Preferences")
+        .onAppear(perform: {PersistenceController.shared.save()})
         .onDisappear(perform: {updateSelectedDevicesTypes()})
     }
     

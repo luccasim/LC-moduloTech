@@ -14,9 +14,9 @@ struct LC_moduloTechApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomeView(MainUser: PersistenceController.preview.mainUser)
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            HomeView(MainUser: persistenceController.mainUser)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//                .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 
         }
     }

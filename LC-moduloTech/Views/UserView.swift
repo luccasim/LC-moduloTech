@@ -18,6 +18,7 @@ struct UserView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State var informations : UserUpdateInformations
     @State var edit = false
+    @State var shouldResetData = false
     
     init(MainUser:User) {
         self.user = MainUser
@@ -35,25 +36,30 @@ struct UserView: View {
         
         Form {
             
-            dansLeBoule(label: "FirstName", Value:user.firstName_, Binding: $informations.firstName)
-            dansLeBoule(label: "LastName", Value:user.lastName_, Binding:$informations.lastName)
-            dansLeBoule(label: "Country", Value:user.country_, Binding: $informations.country)
-            dansLeBoule(label: "City", Value:user.city_, Binding: $informations.city)
-            dansLeBoule(label: "Street", Value:user.street_, Binding: $informations.street)
-            dansLeBoule(label: "Street Code", Value:user.streetCode_, Binding:$informations.streetCode)
-
-            Button("Fetch User Info") {
-                self.fetchUserInfo()
+            dansLeBoule(label: "FirstName", Binding: $informations.firstName)
+            dansLeBoule(label: "LastName", Binding:$informations.lastName)
+            dansLeBoule(label: "Country", Binding: $informations.country)
+            dansLeBoule(label: "City", Binding: $informations.city)
+            dansLeBoule(label: "Street", Binding: $informations.street)
+            dansLeBoule(label: "Street Code", Binding:$informations.streetCode)
+            
+            Button(self.buttonMessage) {
+                self.shouldResetData.toggle()
             }
+
         }
         .onDisappear(perform: {
-            self.updateValue()
+            self.reloadData()
         })
         .navigationTitle("User informations")
     }
     
+    var buttonMessage : String {
+        return self.shouldResetData ? "Conserve Data" : "Reset and Reload The User Data"
+    }
+    
     @ViewBuilder
-    func dansLeBoule(label:String, Value:String?, Binding:Binding<String>) -> some View {
+    func dansLeBoule(label:String, Binding:Binding<String>) -> some View {
         if self.edit {
             HStack {
                 Text(label)
@@ -63,16 +69,14 @@ struct UserView: View {
             HStack {
                 Text(label)
                 Spacer()
-                Text(Value ?? "")
+                Text(Binding.wrappedValue)
             }
         }
     }
     
-    func updateValue() {
-        self.user.update(WithUserInformation: self.informations)
-    }
-    
-    func fetchUserInfo() {
-        self.user.fetchDeviceList(Context: self.viewContext)
+    func reloadData() {
+        if self.shouldResetData {
+            self.user.fetchDeviceList(Context: self.viewContext)
+        }
     }
 }

@@ -22,6 +22,7 @@ extension Light {
         self.intensity_ = Int16(NewIntensity)
         self.mode_ = NewMode
         print("Device Updated \(self)")
+        PersistenceController.shared.save()
     }
     
 }

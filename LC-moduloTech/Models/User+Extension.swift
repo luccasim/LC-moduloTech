@@ -20,8 +20,12 @@ extension User {
         request.predicate = predicate
         return request
     }
-        
+    
+    /// This methode delete all current device et and reload them at the webservice endpoint
+    /// - Parameter Context: Context used
     func fetchDeviceList(Context:NSManagedObjectContext) {
+        
+        Device.deleteAllDevices(onContext: Context)
         
         let webService = StorageWS.shared
                 
@@ -45,7 +49,6 @@ extension User {
                     user.ligthSelection_ = true
                     user.heaterSelection_ = true
                     user.rollerShutterSelection_ = true
-                    user.objectWillChange.send()
                     
                     reponse.devices.forEach({ deviceJSON in
                         Device.createProductDevice(fromJSON: deviceJSON, onContext: Context)
@@ -85,6 +88,7 @@ extension User {
         self.street_ = userInfos.street
         self.streetCode_ = userInfos.streetCode
         self.objectWillChange.send()
+        PersistenceController.shared.save()
     }
     
     func update(Light:Bool, RollerShutter:Bool, Heater:Bool) {
@@ -110,6 +114,7 @@ extension User {
         catch let error {
             print("Fetching request failed \(error.localizedDescription)")
         }
+        PersistenceController.shared.save()
     }
     
 }

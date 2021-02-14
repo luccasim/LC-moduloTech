@@ -52,6 +52,7 @@ struct HomeView: View {
     
     private func deleteItem(at offsets: IndexSet) {
         offsets.map { devices[$0] }.forEach(viewContext.delete)
+        PersistenceController.shared.save()
     }
     
 }

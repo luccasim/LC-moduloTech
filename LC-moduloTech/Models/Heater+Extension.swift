@@ -22,5 +22,6 @@ extension Heater {
         self.temperature_ = NewTemperature
         self.mode_ = NewMode
         print("Heater updated :\(self)")
+        PersistenceController.shared.save()
     }
 }

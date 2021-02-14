@@ -16,6 +16,7 @@ extension RollerShutter {
     
     func update(newPosition:Double) {
         self.position_ = Int16(newPosition)
+        PersistenceController.shared.save()
     }
     
 }
