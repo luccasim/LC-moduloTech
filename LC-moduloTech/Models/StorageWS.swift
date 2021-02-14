@@ -14,6 +14,7 @@ private protocol StorageWSAPI {
 final class StorageWS {
     
     private let session : URLSession
+    static let shared = StorageWS()
     
     public init(Session:URLSession=URLSession.shared) {
         self.session = Session

@@ -16,10 +16,10 @@ struct PersistenceController {
         for i in 0..<10 {
 //            let newItem = Item(context: viewContext)
 //            newItem.timestamp = Date()
-            let newDevice = Device(context: viewContext)
-            newDevice.id_ = Int16(i)
-            newDevice.type_ = Int16(Int.random(in: 1...3))
-            newDevice.name_ = "Device number \(i) with type \(newDevice.type_)"
+//            let newDevice = Device(context: viewContext)
+//            newDevice.id_ = Int16(i)
+//            newDevice.type_ = Int16(Int.random(in: 1...3))
+//            newDevice.name_ = "Device number \(i) with type \(newDevice.type_)"
 
         }
         do {

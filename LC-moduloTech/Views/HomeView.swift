@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct UserSearchPreference {
-    var showLight : Bool = false
-    var showRollerShutter : Bool = false
-    var showHeater : Bool = false
+    var showLight : Bool = true
+    var showRollerShutter : Bool = true
+    var showHeater : Bool = true
 }
 
 struct HomeView: View {
@@ -55,6 +54,9 @@ struct HomeView: View {
                      }
                 }
             }
+            .onAppear(perform: {
+                Device.fetchDeviceList(Context: self.viewContext)
+            })
         }
     }
     

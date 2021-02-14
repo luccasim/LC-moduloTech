@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 extension Device {
     
@@ -57,13 +58,57 @@ extension Device {
         catch let error {
             print("Fetching request failed \(error.localizedDescription)")
         }
-        
     }
     
+    static func fetchDeviceList(Context:NSManagedObjectContext) {
+        let webService = StorageWS.shared
+        
+        webService.fetchDeviceList { (result) in
+            
+            switch result {
+            case .success(let reponse):
+                
+                let devices = reponse.devices.map({ deviceJSON -> Device in
+                    let device = Device(context: Context)
+                    device.id_ = Int16(deviceJSON.id)
+                    device.name_ = deviceJSON.deviceName
+                    device.type_ = deviceJSON.productType.id
+                    device.isSelected_ = true
+                    device.objectWillChange.send()
+                    return device
+                })
+                
+                print("Fetching item : \(devices)")
+                
+                do {
+                    try Context.save()
+                } catch {
+                    // Replace this implementation with code to handle the error appropriately.
+                    // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                    let nsError = error as NSError
+                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                }
+                
+            case .failure(let error):
+                print("Error when fetching \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 extension NSPredicate {
     static var all = NSPredicate(format: "TRUEPREDICATE")
     static var none = NSPredicate(format: "FALSEPREDICATE")
     static var isSelected = NSPredicate(format:"isSelected_ == TRUE")
+}
+
+extension StorageWS.Device.ProductType {
+    
+    var id : Int16 {
+        switch self {
+        case .light: return 1
+        case .rollerShutter: return 2
+        case .heater: return 3
+        }
+    }
 }
