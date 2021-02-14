@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8460D97125D94C4C00B6E610 /* StorageWS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460D97025D94C4C00B6E610 /* StorageWS.swift */; };
+		8460D97C25D9530A00B6E610 /* StorageReponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8460D97B25D9530A00B6E610 /* StorageReponseTests.swift */; };
 		84C8D58025D3F16300A0DBD9 /* LC_moduloTechApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8D57F25D3F16300A0DBD9 /* LC_moduloTechApp.swift */; };
 		84C8D58225D3F16300A0DBD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8D58125D3F16300A0DBD9 /* ContentView.swift */; };
 		84C8D58425D3F16600A0DBD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84C8D58325D3F16600A0DBD9 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8460D97025D94C4C00B6E610 /* StorageWS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageWS.swift; sourceTree = "<group>"; };
+		8460D97B25D9530A00B6E610 /* StorageReponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageReponseTests.swift; sourceTree = "<group>"; };
 		84C8D57C25D3F16300A0DBD9 /* LC-moduloTech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LC-moduloTech.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84C8D57F25D3F16300A0DBD9 /* LC_moduloTechApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LC_moduloTechApp.swift; sourceTree = "<group>"; };
 		84C8D58125D3F16300A0DBD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				84C8D59625D3F16600A0DBD9 /* LC_moduloTechTests.swift */,
+				8460D97B25D9530A00B6E610 /* StorageReponseTests.swift */,
 				84C8D59825D3F16600A0DBD9 /* Info.plist */,
 			);
 			path = "LC-moduloTechTests";
@@ -171,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				EC942FD725D8496F00AB9D18 /* Device+extension.swift */,
+				8460D97025D94C4C00B6E610 /* StorageWS.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,6 +317,7 @@
 				84C8D58925D3F16600A0DBD9 /* Persistence.swift in Sources */,
 				84C8D58225D3F16300A0DBD9 /* ContentView.swift in Sources */,
 				EC793DD825D83551005E589C /* HomeView.swift in Sources */,
+				8460D97125D94C4C00B6E610 /* StorageWS.swift in Sources */,
 				84C8D58025D3F16300A0DBD9 /* LC_moduloTechApp.swift in Sources */,
 				EC942FD825D8496F00AB9D18 /* Device+extension.swift in Sources */,
 			);
@@ -320,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8460D97C25D9530A00B6E610 /* StorageReponseTests.swift in Sources */,
 				84C8D59725D3F16600A0DBD9 /* LC_moduloTechTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,7 +487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.devios.LC-moduloTech";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.test.LC-moduloTech";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -501,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "fr.devios.LC-moduloTech";
+				PRODUCT_BUNDLE_IDENTIFIER = "fr.test.LC-moduloTech";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -27,7 +27,6 @@ struct DetailView: View {
         default: HomeView()
         }
     }
-    
 }
 
 struct HeaterView: View {
