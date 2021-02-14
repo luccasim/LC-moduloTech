@@ -10,4 +10,18 @@ import CoreData
 
 extension Light {
     
+    var intensity : Double {
+        return Double(self.intensity_)
+    }
+    
+    var mode : Bool {
+        return self.mode_
+    }
+    
+    func udpate(NewIntensity:Double, NewMode:Bool) {
+        self.intensity_ = Int16(NewIntensity)
+        self.mode_ = NewMode
+        print("Device Updated \(self)")
+    }
+    
 }

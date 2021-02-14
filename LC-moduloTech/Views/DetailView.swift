@@ -34,7 +34,7 @@ struct DetailView: View {
             
         case .Light:
             if let light = device as? Light {
-                LightView(light: light)
+                LightView(Light: light)
             }
             
         default: Text("C'est pas normal cette vue, Tu doutes!")
@@ -83,10 +83,16 @@ private struct HeaterView: View {
 
 private struct LightView: View {
     
-    var light : Light
+    private  var light : Light
     
     @State var mode : Bool = false
     @State var intensity : Double = 0
+    
+    init(Light:Light) {
+        _mode = State(initialValue: Light.mode_)
+        _intensity = State(initialValue: Light.intensity)
+        self.light = Light
+    }
     
     var body: some View {
         VStack {
@@ -98,6 +104,9 @@ private struct LightView: View {
                 }
             }
         }
+        .onDisappear(perform: {
+            self.light.udpate(NewIntensity: self.intensity, NewMode: self.mode)
+        })
     }
 }
 
