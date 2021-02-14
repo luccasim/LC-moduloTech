@@ -18,6 +18,9 @@
 		84C8D5A225D3F16600A0DBD9 /* LC_moduloTechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C8D5A125D3F16600A0DBD9 /* LC_moduloTechUITests.swift */; };
 		EC497A9625D97AF000794FA6 /* User+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497A9525D97AF000794FA6 /* User+Extension.swift */; };
 		EC497A9B25D99EBD00794FA6 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497A9A25D99EBD00794FA6 /* UserView.swift */; };
+		EC497AA625D9BCAB00794FA6 /* Light+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AA525D9BCAB00794FA6 /* Light+Extension.swift */; };
+		EC497AAB25D9BCEB00794FA6 /* RollerShutter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AAA25D9BCEB00794FA6 /* RollerShutter+Extension.swift */; };
+		EC497AB025D9BD0C00794FA6 /* Heater+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC497AAF25D9BD0C00794FA6 /* Heater+Extension.swift */; };
 		EC793DD825D83551005E589C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC793DD725D83551005E589C /* HomeView.swift */; };
 		EC79BB1D25D8C63700E5E471 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC79BB1C25D8C63700E5E471 /* DetailView.swift */; };
 		EC942FD025D843E200AB9D18 /* storageReponse.json in Resources */ = {isa = PBXBuildFile; fileRef = EC942FCF25D843E200AB9D18 /* storageReponse.json */; };
@@ -60,6 +63,9 @@
 		84C8D5A325D3F16600A0DBD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC497A9525D97AF000794FA6 /* User+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Extension.swift"; sourceTree = "<group>"; };
 		EC497A9A25D99EBD00794FA6 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
+		EC497AA525D9BCAB00794FA6 /* Light+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Light+Extension.swift"; sourceTree = "<group>"; };
+		EC497AAA25D9BCEB00794FA6 /* RollerShutter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RollerShutter+Extension.swift"; sourceTree = "<group>"; };
+		EC497AAF25D9BD0C00794FA6 /* Heater+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Heater+Extension.swift"; sourceTree = "<group>"; };
 		EC793DD725D83551005E589C /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EC79BB1C25D8C63700E5E471 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		EC942FCF25D843E200AB9D18 /* storageReponse.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = storageReponse.json; sourceTree = "<group>"; };
@@ -178,6 +184,9 @@
 			isa = PBXGroup;
 			children = (
 				EC942FD725D8496F00AB9D18 /* Device+extension.swift */,
+				EC497AAA25D9BCEB00794FA6 /* RollerShutter+Extension.swift */,
+				EC497AAF25D9BD0C00794FA6 /* Heater+Extension.swift */,
+				EC497AA525D9BCAB00794FA6 /* Light+Extension.swift */,
 				EC497A9525D97AF000794FA6 /* User+Extension.swift */,
 				8460D97025D94C4C00B6E610 /* StorageWS.swift */,
 			);
@@ -320,10 +329,13 @@
 				84C8D58925D3F16600A0DBD9 /* Persistence.swift in Sources */,
 				EC497A9625D97AF000794FA6 /* User+Extension.swift in Sources */,
 				EC793DD825D83551005E589C /* HomeView.swift in Sources */,
+				EC497AA625D9BCAB00794FA6 /* Light+Extension.swift in Sources */,
+				EC497AAB25D9BCEB00794FA6 /* RollerShutter+Extension.swift in Sources */,
 				8460D97125D94C4C00B6E610 /* StorageWS.swift in Sources */,
 				EC497A9B25D99EBD00794FA6 /* UserView.swift in Sources */,
 				84C8D58025D3F16300A0DBD9 /* LC_moduloTechApp.swift in Sources */,
 				EC942FD825D8496F00AB9D18 /* Device+extension.swift in Sources */,
+				EC497AB025D9BD0C00794FA6 /* Heater+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

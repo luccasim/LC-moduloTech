@@ -32,7 +32,7 @@ struct DetailView: View {
 /// We didnt need split theses view on others files, they're pretty straighforward.
 
 private struct HeaterView: View {
-    
+
     @State var mode : Bool = false
     @State var temperature : Double = 0
     

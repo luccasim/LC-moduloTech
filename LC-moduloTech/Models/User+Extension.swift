@@ -48,12 +48,13 @@ extension User {
                     user.objectWillChange.send()
                     
                     reponse.devices.forEach({ deviceJSON in
-                        let device = Device(context: Context)
-                        device.id_ = Int16(deviceJSON.id)
-                        device.name_ = deviceJSON.deviceName
-                        device.type_ = deviceJSON.productType.id
-                        device.isSelected_ = true
-                        device.objectWillChange.send()
+                        Device.createProductDevice(fromJSON: deviceJSON, onContext: Context)
+//                        let device = Device(context: Context)
+//                        device.id_ = Int16(deviceJSON.id)
+//                        device.name_ = deviceJSON.deviceName
+//                        device.type_ = deviceJSON.productType.id
+//                        device.isSelected_ = true
+//                        device.objectWillChange.send()
                     })
                     
                     do {
@@ -120,15 +121,4 @@ extension User {
         }
     }
     
-}
-
-extension StorageWS.Device.ProductType {
-    
-    var id : Int16 {
-        switch self {
-        case .light: return 1
-        case .rollerShutter: return 2
-        case .heater: return 3
-        }
-    }
 }
