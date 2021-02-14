@@ -43,7 +43,6 @@ struct FilterView: View {
             Heater: self.preferences.showHeater,
             onContext: self.viewContext)
     }
-    
 }
 
 struct FilterView_Previews: PreviewProvider {

@@ -33,9 +33,9 @@ struct HomeView: View {
             
             List {
                 
-                ForEach(self.devices, id: \.self) { Device in
-                    NavigationLink(destination: DetailView()) {
-                        Text("\(Device.name)")
+                ForEach(self.devices, id: \.self) { device in
+                    NavigationLink(destination: DetailView(Device: device)) {
+                        Text("\(device.name)")
                      }
                 }
                 .onDelete(perform: self.deleteItem(at:))
@@ -59,7 +59,7 @@ struct HomeView: View {
     }
     
     private func deleteItem(at offsets: IndexSet) {
-//        self.list.remove(atOffsets: offsets)
+        offsets.map { devices[$0] }.forEach(viewContext.delete)
     }
     
 }
@@ -73,18 +73,6 @@ struct ProfilView: View {
         }
     }
 }
-
-
-struct DetailView: View {
-    
-    var body: some View {
-        VStack {
-            Rectangle()
-                .foregroundColor(.red)
-        }
-    }
-}
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
