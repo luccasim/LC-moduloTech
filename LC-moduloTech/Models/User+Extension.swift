@@ -99,4 +99,14 @@ extension User {
         return first
     }
     
+    func update(WithUserInformation userInfos:UserUpdateInformations) {
+        self.firstName_ = userInfos.firstName
+        self.lastName_ = userInfos.lastName
+        self.country_ = userInfos.country
+        self.city_ = userInfos.city
+        self.street_ = userInfos.street
+        self.streetCode_ = userInfos.streetCode
+        self.objectWillChange.send()
+    }
+    
 }

@@ -46,7 +46,7 @@ struct HomeView: View {
                 }
                 
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: ProfilView()) {
+                    NavigationLink(destination: UserView(MainUser: self.user)) {
                          Text("Profil")
                      }
                 }
